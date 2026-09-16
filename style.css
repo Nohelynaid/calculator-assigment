@@ -3,7 +3,7 @@
   width: min(90vw, 480px);
 
   box-sizing: border-box;
-  border: 10px solid grey;
+  border: 10px solid darkgrey;
 
   padding: 0;
   margin: 100px auto;
@@ -21,6 +21,7 @@
   border: 5px solid black;
   text-align: right;
   padding-right: 8px;
+  background-color: lightgrey;
 }
 
 .buttons {
