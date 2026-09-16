@@ -1,0 +1,108 @@
+.calculator {
+  --button-height: clamp(40px, 20vw, 70px);
+  width: min(90vw, 480px);
+
+  box-sizing: border-box;
+  border: 10px solid grey;
+
+  padding: 0;
+  margin: 100px auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.display {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--button-height);
+  border: 5px solid black;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.buttons {
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, var(--button-height));
+  grid-template-areas:
+    "clear backspace backspace divide"
+    "seven eight nine multiply"
+    "four five six subtract"
+    "one two three add"
+    "zero zero decimal equals";
+  gap: 3px;
+  margin: 0px;
+  border: 2px solid black;
+}
+
+button#clear {
+  grid-area: clear;
+}
+button#backspace {
+  grid-area: backspace;
+}
+button[data-operator="/"] {
+  grid-area: divide;
+}
+button[data-operator="*"] {
+  grid-area: multiply;
+}
+button[data-operator="-"] {
+  grid-area: subtract;
+}
+button[data-operator="+"] {
+  grid-area: add;
+}
+button[data-number="7"] {
+  grid-area: seven;
+}
+button[data-number="8"] {
+  grid-area: eight;
+}
+button[data-number="9"] {
+  grid-area: nine;
+}
+button[data-number="4"] {
+  grid-area: four;
+}
+button[data-number="5"] {
+  grid-area: five;
+}
+button[data-number="6"] {
+  grid-area: six;
+}
+button[data-number="1"] {
+  grid-area: one;
+}
+button[data-number="2"] {
+  grid-area: two;
+}
+button[data-number="3"] {
+  grid-area: three;
+}
+button.btn-zero {
+  grid-area: zero;
+}
+button#decimal {
+  grid-area: decimal;
+}
+button#equals {
+  grid-area: equals;
+}
+
+.btn-number {
+  background-color: aqua;
+}
+
+.btn-operator,
+.btn-equals {
+  background-color: orangered;
+}
+
+.btn-action {
+  background-color: blue;
+}
