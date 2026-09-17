@@ -47,7 +47,7 @@
   border-radius: 3px;
   color: #000000;
   font-size: clamp(1.25rem, 5vw, 2rem);
-  font-weight: 700;
+  font-weight: 400;
 }
 
 button#clear {
