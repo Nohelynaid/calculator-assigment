@@ -21,6 +21,7 @@
   border: 5px solid black;
   text-align: right;
   padding-right: 8px;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   background-color: lightgrey;
   white-space: nowrap;
   overflow: hidden;
@@ -44,6 +45,9 @@
 .btn {
   border-width: 0px;
   border-radius: 3px;
+  color: #000000;
+  font-size: clamp(1.25rem, 5vw, 2rem);
+  font-weight: 700;
 }
 
 button#clear {
