@@ -22,6 +22,8 @@
   text-align: right;
   padding-right: 8px;
   background-color: lightgrey;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
 .buttons {
