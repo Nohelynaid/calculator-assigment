@@ -14,6 +14,7 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let result = "";
+let showOperation = ""
 
 
 // BASIC MATH FUNCTIONS
@@ -99,6 +100,40 @@ function inputNumber(number) {
 
     updateDisplay();
 }
+// DECIMAL
+
+function inputDecimal() {
+
+    // First number
+
+    if (operator === "") {
+
+        if (firstNumber.includes(".") === false) {
+
+            if (firstNumber === "") {
+                firstNumber = "0";
+            }
+
+            firstNumber = firstNumber + ".";
+        }
+    }
+
+    // Second number
+
+    else {
+
+        if (secondNumber.includes(".") === false) {
+
+            if (secondNumber === "") {
+                secondNumber = "0";
+            }
+
+            secondNumber = secondNumber + ".";
+        }
+    }
+
+    updateDisplay();
+}
 
 
 
@@ -106,15 +141,21 @@ function inputNumber(number) {
 
 function chooseOperator(newOperator) {
 
-    // Do nothing if the user has not entered a number
-
     if (firstNumber === "") {
         return;
     }
+
+    if (operator !== "" && secondNumber !== "") {
+        calculate(false);
+    }
+
     operator = newOperator;
+
+    showOperation = showOperation + " " + newOperator + " ";
 
     updateDisplay();
 }
+
 
 // CALCULATE
 
@@ -162,6 +203,7 @@ function calculate() {
         firstNumber = "";
         secondNumber = "";
         operator = "";
+        showOperation = "";
 
         return;
     }
@@ -173,6 +215,11 @@ function calculate() {
     secondNumber = "";
 
     operator = "";
+    // Only replace the display when pressing =
+    if (showResult) {
+        showOperation = String(result);
+        display.textContent = result;
+    }
 }
 // CLEAR
 
