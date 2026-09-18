@@ -79,6 +79,10 @@ function inputNumber(number) {
       result = "";
     }
 
+    if (firstNumber === "0") {
+      return;
+    }
+
     firstNumber = firstNumber + number;
   }
 
