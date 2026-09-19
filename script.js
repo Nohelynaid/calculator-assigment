@@ -14,7 +14,6 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let result = "";
-let showOperation = "";
 
 // BASIC MATH FUNCTIONS
 
@@ -39,21 +38,10 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
-  if (operator === "+") {
-    return add(a, b);
-  }
-
-  if (operator === "-") {
-    return subtract(a, b);
-  }
-
-  if (operator === "*") {
-    return multiply(a, b);
-  }
-
-  if (operator === "/") {
-    return divide(a, b);
-  }
+  if (operator === "+") return add(a, b);
+  if (operator === "-") return subtract(a, b);
+  if (operator === "*") return multiply(a, b);
+  if (operator === "/") return divide(a, b);
 }
 
 function updateDisplay() {
@@ -99,23 +87,20 @@ function inputDecimal() {
   // First number
 
   if (operator === "") {
-    if (firstNumber.includes(".") === false) {
+    if (!firstNumber.includes(".")) {
       if (firstNumber === "") {
         firstNumber = "0";
       }
 
-      firstNumber = firstNumber + ".";
+      firstNumber += ".";
     }
-  }
-
-  // Second number
-  else {
-    if (secondNumber.includes(".") === false) {
+  } else {
+    if (!secondNumber.includes(".")) {
       if (secondNumber === "") {
         secondNumber = "0";
       }
 
-      secondNumber = secondNumber + ".";
+      secondNumber += ".";
     }
   }
 
@@ -130,19 +115,17 @@ function chooseOperator(newOperator) {
   }
 
   if (operator !== "" && secondNumber !== "") {
-    calculate(false);
+    calculate();
   }
 
   operator = newOperator;
-
-  showOperation = showOperation + " " + newOperator + " ";
 
   updateDisplay();
 }
 
 // CALCULATE
 
-function calculate(showResult = false) {
+function calculate() {
   // We need two numbers and an operator
 
   if (firstNumber === "" || secondNumber === "" || operator === "") {
@@ -168,17 +151,13 @@ function calculate(showResult = false) {
     firstNumber = "";
     secondNumber = "";
     operator = "";
-    showOperation = "";
 
     return;
   }
-
   // Save the result so it can  be used in another operation
 
   firstNumber = String(result);
-
   secondNumber = "";
-
   operator = "";
   // Only replace the display when pressing =
   if (showResult) {
@@ -190,11 +169,8 @@ function calculate(showResult = false) {
 
 function clearCalculator() {
   firstNumber = "";
-
   secondNumber = "";
-
   operator = "";
-
   result = "";
 
   updateDisplay();
@@ -204,16 +180,13 @@ function clearCalculator() {
 
 function backspace() {
   // If there is a second number, delete from the second number
-
   if (secondNumber !== "") {
     secondNumber = secondNumber.slice(0, -1);
   }
-
   // If there is an operator remove it
   else if (operator !== "") {
     operator = "";
   }
-
   // Otherwise delete from the first number
   else {
     firstNumber = firstNumber.slice(0, -1);
@@ -268,33 +241,26 @@ backspaceButton.addEventListener("click", function () {
 
 window.addEventListener("keydown", function (event) {
   let key = event.key;
-
   // Numbers
-
   if (key >= "0" && key <= "9") {
     inputNumber(key);
   }
-
   // Operators
   else if (key === "+" || key === "-" || key === "*" || key === "/") {
     chooseOperator(key);
   }
-
   // Decimal
   else if (key === ".") {
     inputDecimal();
   }
-
   // Equals
   else if (key === "Enter" || key === "=") {
     calculate();
   }
-
   // Backspace
   else if (key === "Backspace") {
     backspace();
   }
-
   // Clear
   else if (key === "Escape" || key === "Delete") {
     clearCalculator();
