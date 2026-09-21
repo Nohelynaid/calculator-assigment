@@ -115,7 +115,7 @@ function chooseOperator(newOperator) {
   }
 
   if (operator !== "" && secondNumber !== "") {
-    calculate();
+    calculate(false);
   }
 
   operator = newOperator;
@@ -125,10 +125,12 @@ function chooseOperator(newOperator) {
 
 // CALCULATE
 
-function calculate() {
-  // We need two numbers and an operator
-
-  if (firstNumber === "" || secondNumber === "" || operator === "") {
+function calculate(showResult = true) {
+  if (
+    firstNumber === "" ||
+    secondNumber === "" ||
+    operator === ""
+  ) {
     return;
   }
 
@@ -137,31 +139,28 @@ function calculate() {
 
   result = operate(operator, number1, number2);
 
-  // If the result is a number, round long decimals
-
-  if (typeof result === "number") {
-    result = Math.round(result * 100000) / 100000;
-  }
-
-  display.textContent = result;
-
-  // If the user divided by zero, reset the calculator
-
+  // Division by zero
   if (result === "Can't divide by 0") {
+    display.textContent = result;
+
     firstNumber = "";
     secondNumber = "";
     operator = "";
 
     return;
   }
-  // Save the result so it can  be used in another operation
 
+  // Round long decimals
+  result = Math.round(result * 100000) / 100000;
+
+  // IMPORTANT:
+  // Save the result as the first number
   firstNumber = String(result);
   secondNumber = "";
   operator = "";
-  // Only replace the display when pressing =
+
+  // Only show the result by itself when pressing =
   if (showResult) {
-    showOperation = String(result);
     display.textContent = result;
   }
 }
