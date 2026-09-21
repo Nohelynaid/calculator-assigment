@@ -126,11 +126,7 @@ function chooseOperator(newOperator) {
 // CALCULATE
 
 function calculate(showResult = true) {
-  if (
-    firstNumber === "" ||
-    secondNumber === "" ||
-    operator === ""
-  ) {
+  if (firstNumber === "" || secondNumber === "" || operator === "") {
     return;
   }
 
